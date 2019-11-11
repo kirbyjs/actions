@@ -1,0 +1,17 @@
+name: 'ssh'
+description: 'ssh into a server'
+inputs:
+  host:
+    description: 'host of server'
+    required: true
+  username:
+    description: 'user to login to server with'
+    required: true
+  key:
+    description: 'ssh private key to use to login to server with'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.who-to-greet }}
