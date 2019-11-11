@@ -10,8 +10,11 @@ inputs:
   key:
     description: 'ssh private key to use to login to server with'
     required: true
-  command:
-    description: 'command to run in your ssh server, does support multiple with |'
+  local_files:
+    description: 'local files to push up to your server'
+    required: true
+  remote_location:
+    description: 'remote location to store your files at'
     required: true
 runs:
   using: 'docker'

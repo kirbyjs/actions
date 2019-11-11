@@ -14,4 +14,4 @@ chmod 600 "${SSH_DIR}/deploy_key"
 eval $(ssh-agent)
 ssh-add "${SSH_DIR}/deploy_key"
 
-ssh -o StrictHostKeyChecking=no -A -tt $INPUT_USERNAME@$INPUT_HOST "$INPUT_COMMAND"
+scp -o StrictHostKeyChecking=no -r $INPUT_LOCAL_FILES $INPUT_USERNAME@$INPUT_HOST:$INPUT_REMOTE_LOCATION
