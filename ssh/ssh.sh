@@ -2,13 +2,15 @@
 
 set -e
 
-mkdir $HOME/.ssh && ssh-keyscan -t rsa $INPUT_HOST >> $HOME/.ssh/known_hosts
-echo "$INPUT_KEY" > "$SSH_PATH/deploy_key"
+SSH_DIR="$HOME/.ssh"
 
-chmod 700 "$HOME/.ssh"
-chmod 600 "$HOME/.ssh/known_hosts"
-chmod 600 "$HOME/.ssh/deploy_key"
+mkdir ${SSH_DIR} && ssh-keyscan -t rsa $INPUT_HOST >> ${SSH_DIR}/known_hosts
+echo "$INPUT_KEY" > "${SSH_DIR}/deploy_key"
+
+chmod 700 "${SSH_DIR}"
+chmod 600 "${SSH_DIR}/known_hosts"
+chmod 600 "${SSH_DIR}/deploy_key"
 
 eval $(ssh-agent)
-ssh-add "$HOME/.ssh/deploy_key"
-ssh -o StrictHostKeyChecking=no -A -tt $INPUT_USERNAME@$INPUT_HOST $command
+ssh-add "${SSH_DIR}/deploy_key"
+ssh -o StrictHostKeyChecking=no -A -tt $INPUT_USERNAME@$INPUT_HOST "$INPUT_COMMAND"

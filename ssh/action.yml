@@ -10,6 +10,9 @@ inputs:
   key:
     description: 'ssh private key to use to login to server with'
     required: true
+  command:
+    description: 'command to run in your ssh server, does support multiple with |'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
