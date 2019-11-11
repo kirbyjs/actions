@@ -1,5 +1,10 @@
 FROM alpine:3
 
-COPY ssh.sh /ssh.sh
+WORKDIR /usr/src/app
 
-ENTRYPOINT [ "/ssh.sh" ]
+RUN apk add openssh
+
+COPY ssh.sh ./ssh.sh
+RUN chmod +x ./ssh.sh
+
+ENTRYPOINT [ "sh", "/usr/src/app/ssh.sh" ]
